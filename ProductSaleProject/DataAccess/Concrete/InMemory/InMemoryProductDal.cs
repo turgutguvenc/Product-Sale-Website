@@ -10,24 +10,58 @@ namespace DataAccess.Concrete.InMemory
 {
     public class InMemoryProductDal : IProductDal
     {
+        List<Product> _products;
+        public InMemoryProductDal()
+        {
+            _products = new List<Product>()
+            {
+                new Product(){ ProductId = 1, ProductName = "Computer",CategoryId = 1,UnitPrice = 7653, UnitsInStock = 32 },
+                 new Product(){ ProductId = 2, ProductName = "Mouse",CategoryId = 3,UnitPrice = 321, UnitsInStock = 2 },
+                  new Product(){ ProductId = 3, ProductName = "Secreen",CategoryId = 2,UnitPrice = 3564, UnitsInStock = 675 },
+                   new Product(){ ProductId = 4, ProductName = "Keyboard",CategoryId = 3,UnitPrice = 765, UnitsInStock = 9090 },
+                  new Product(){ ProductId = 5, ProductName = "Laptop",CategoryId = 1,UnitPrice = 11000, UnitsInStock = 56 },
+            };
+        }
         public void Add(Product product)
         {
-            throw new NotImplementedException();
+            _products.Add(product);
         }
 
         public void Delete(Product product)
         {
-            throw new NotImplementedException();
+            var productToDelete = _products.FirstOrDefault(p => p.ProductId == product.ProductId);
+            if (productToDelete != null)
+            {
+                _products.Remove(productToDelete);  
+            }
         }
 
         public List<Product> GetAll()
         {
-            throw new NotImplementedException();
+            return _products;
+        }
+
+        public List<Product> GetByCategory(int categoryId)
+        {
+            return _products.Where(p => p.CategoryId == categoryId).ToList();
+        }
+
+        public Product GetById(int productId)
+        {
+            var product = _products.FirstOrDefault(p => p.ProductId == productId);
+            return product;
         }
 
         public void Update(Product product)
         {
-            throw new NotImplementedException();
+            var productsToUpdate = _products.FirstOrDefault(p=> p.ProductId == product.ProductId);
+            if(productsToUpdate != null)
+            {
+                productsToUpdate.UnitPrice = product.UnitPrice;
+                productsToUpdate.UnitsInStock = product.UnitsInStock;
+                productsToUpdate.ProductName = product.ProductName;
+                productsToUpdate.CategoryId = product.CategoryId;
+            }
         }
     }
 }
