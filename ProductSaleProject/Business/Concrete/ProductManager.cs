@@ -33,13 +33,9 @@ namespace Business.Concrete
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
-            return _productDal.GetById(id);
+            return _productDal.Get(id);
         }
 
-        public async Task<List<Product>> GetProductsByCategoryAsync(int categoryId)
-        {
-            return _productDal.GetByCategory(categoryId);
-        }
 
         public async Task UpdateProductAsync(Product product)
         {

@@ -14,8 +14,5 @@ namespace Business.Abstract
         Task UpdateProductAsync(Product product);
         Task DeleteProductAsync(Product product);
         Task<Product> GetProductByIdAsync(int id);
-        Task<List<Product>> GetProductsByCategoryAsync(int categoryId); 
-
-
     }
 }
