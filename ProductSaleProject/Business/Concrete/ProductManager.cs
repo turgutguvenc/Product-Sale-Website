@@ -31,9 +31,19 @@ namespace Business.Concrete
            return _productDal.GetAll();
         }
 
+        public async Task<List<Product>> GetAllProductsByPriceRangeAsync(decimal minPrice, decimal maxPrice)
+        {
+            return _productDal.GetAll(p=> p.UnitPrice> minPrice && p.UnitPrice < maxPrice);
+        }
+
+        public async Task<List<Product>> GetProductByCategoryId(int categoryId)
+        {
+            return _productDal.GetAll(p => p.CategoryId == categoryId);
+        }
+
         public async Task<Product> GetProductByIdAsync(int id)
         {
-            return _productDal.Get(id);
+            return _productDal.Get(p=> p.ProductId == id);
         }
 
 
