@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,10 +47,14 @@ namespace Business.Concrete
             return _productDal.Get(p=> p.ProductId == id);
         }
 
-
         public async Task UpdateProductAsync(Product product)
         {
             _productDal.Update(product);
+        }
+
+        public async Task<List<ProductDetailDto>> GetProductDetails()
+        {
+            return _productDal.GetProductsWithDetails();
         }
     }
 }

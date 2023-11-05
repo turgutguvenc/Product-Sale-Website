@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "ConsoleUI/1.0.0": {
         "dependencies": {
-          "Business": "1.0.0"
+          "Business": "1.0.0",
+          "Tests": "1.0.0"
         },
         "runtime": {
           "ConsoleUI.dll": {}
@@ -484,6 +485,15 @@
         "runtime": {
           "Entities.dll": {}
         }
+      },
+      "Tests/1.0.0": {
+        "dependencies": {
+          "Business": "1.0.0",
+          "DataAccess": "1.0.0"
+        },
+        "runtime": {
+          "Tests.dll": {}
+        }
       }
     }
   },
@@ -784,6 +794,11 @@
       "sha512": ""
     },
     "Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tests/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

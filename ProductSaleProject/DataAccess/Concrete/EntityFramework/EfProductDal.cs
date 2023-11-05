@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,22 @@ namespace DataAccess.Concrete.EntityFramework
             productsToUpdate.UnitsInStock = entity.UnitsInStock;
             productsToUpdate.CategoryId = entity.CategoryId;
             _context.SaveChanges();
+        }
+
+        public List<ProductDetailDto> GetProductsWithDetails()
+        {
+            var result = from p in _context.Products
+                         join c in _context.Categories
+                         on p.CategoryId equals c.CategoryId
+                         select new ProductDetailDto
+                         {
+                             ProductId = p.ProductId,
+                             CategoryName = c.CategoryName,
+                             UnitsInStock = p.UnitsInStock,
+                             UnitPrice = p.UnitPrice,
+                             ProductName = p.ProductName,
+                         };
+            return result.ToList();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,6 @@ namespace Business.Abstract
         Task<Product> GetProductByIdAsync(int id);
         Task<List<Product>> GetProductByCategoryId(int categoryId); 
         Task<List<Product>> GetAllProductsByPriceRangeAsync(decimal minPrice, decimal maxPrice);
+        Task<List<ProductDetailDto>> GetProductDetails();
     }
 }

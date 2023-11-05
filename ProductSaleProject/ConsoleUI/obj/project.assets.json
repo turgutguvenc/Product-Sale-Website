@@ -635,6 +635,20 @@
         "runtime": {
           "bin/placeholder/Entities.dll": {}
         }
+      },
+      "Tests/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Business": "1.0.0",
+          "DataAccess": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Tests.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Tests.dll": {}
+        }
       }
     }
   },
@@ -1815,11 +1829,17 @@
       "type": "project",
       "path": "../Entities/Entities.csproj",
       "msbuildProject": "../Entities/Entities.csproj"
+    },
+    "Tests/1.0.0": {
+      "type": "project",
+      "path": "../Tests/Tests.csproj",
+      "msbuildProject": "../Tests/Tests.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Business >= 1.0.0"
+      "Business >= 1.0.0",
+      "Tests >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1851,6 +1871,9 @@
           "projectReferences": {
             "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\Product-Sale-Website\\ProductSaleProject\\Business\\Business.csproj": {
               "projectPath": "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\Product-Sale-Website\\ProductSaleProject\\Business\\Business.csproj"
+            },
+            "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\Product-Sale-Website\\ProductSaleProject\\Tests\\Tests.csproj": {
+              "projectPath": "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\Product-Sale-Website\\ProductSaleProject\\Tests\\Tests.csproj"
             }
           }
         }
