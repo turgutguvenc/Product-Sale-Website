@@ -11,27 +11,32 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCategoryDal : ICategoryDal
     {
-        public void Add(Category entity)
+        public Task<bool> AddAsync(Category entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Category entity)
+        public Task<bool> DeleteAsync(Category entity)
         {
             throw new NotImplementedException();
         }
 
-        public Category Get(Expression<Func<Category, bool>> filter)
+        public Task<Category> Get(Expression<Func<Category, bool>> filter)
         {
             throw new NotImplementedException();
         }
 
-        public List<Category> GetAll(Expression<Func<Category, bool>> filter = null)
+        public Task<List<Category>> GetAll(Expression<Func<Category, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Category entity)
+        public Task<bool> SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateAsync(Category entity)
         {
             throw new NotImplementedException();
         }

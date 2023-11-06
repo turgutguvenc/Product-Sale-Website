@@ -10,10 +10,11 @@ namespace DataAccess.Abstract
 {
     public interface IEntityRepositoryDal<T> where T: class, IEntity,new()
     {
-        List<T> GetAll(Expression<Func<T,bool>> filter = null);
-        T Get(Expression<Func<T, bool>> filter);
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        Task<List<T>> GetAll(Expression<Func<T,bool>> filter = null);
+        Task<T> Get(Expression<Func<T, bool>> filter);
+        Task<bool> AddAsync(T entity);
+        Task<bool> UpdateAsync(T entity);
+        Task<bool> DeleteAsync(T entity);
+        Task<bool> SaveChangesAsync();
     }
 }

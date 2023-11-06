@@ -10,10 +10,10 @@ IProductService productService = new ProductManager(productDal);
 Console.WriteLine("-----------------Test starts------------------");
 AllProductTest productTest = new AllProductTest(productDal,productService);
 //productTest.TestGettingAllProductsFromDatabase();
+//productTest.TestGetProductInDetails();
 //productTest.TestGetProductByCategoryFromDatabase(2);
 //productTest.TestGetProductByIdFromDatabase(2);
-//productTest.TestGetProductInDetails();
-productTest.TestGetProductsByPriceRange(50, 100);
+//productTest.TestGetProductsByPriceRange(50, 100);
 
 
 

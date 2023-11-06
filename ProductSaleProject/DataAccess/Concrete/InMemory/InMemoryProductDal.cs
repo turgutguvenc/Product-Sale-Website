@@ -80,5 +80,60 @@ namespace DataAccess.Concrete.InMemory
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<ProductDetailDto>> GetProductsWithDetailsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> CheckProductExistsAsync(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Product>> GetAllAsync(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Product> GetAsync(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddAsync(Product entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateAsync(Product entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteAsync(Product entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<List<ProductDetailDto>> IProductDal.GetProductsWithDetails()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<List<Product>> IEntityRepositoryDal<Product>.GetAll(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Product> IEntityRepositoryDal<Product>.Get(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

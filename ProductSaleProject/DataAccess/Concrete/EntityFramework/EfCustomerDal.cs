@@ -11,27 +11,32 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCustomerDal : ICustomerDal
     {
-        public void Add(Customer entity)
+        public Task<bool> AddAsync(Customer entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Customer entity)
+        public Task<bool> DeleteAsync(Customer entity)
         {
             throw new NotImplementedException();
         }
 
-        public Customer Get(Expression<Func<Customer, bool>> filter)
+        public Task<Customer> Get(Expression<Func<Customer, bool>> filter)
         {
             throw new NotImplementedException();
         }
 
-        public List<Customer> GetAll(Expression<Func<Customer, bool>> filter = null)
+        public Task<List<Customer>> GetAll(Expression<Func<Customer, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Customer entity)
+        public Task<bool> SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateAsync(Customer entity)
         {
             throw new NotImplementedException();
         }

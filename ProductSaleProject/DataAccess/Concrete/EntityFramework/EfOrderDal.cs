@@ -11,27 +11,32 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfOrderDal : IOrderDal
     {
-        public void Add(Order entity)
+        public Task<bool> AddAsync(Order entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Order entity)
+        public Task<bool> DeleteAsync(Order entity)
         {
             throw new NotImplementedException();
         }
 
-        public Order Get(Expression<Func<Order, bool>> filter)
+        public Task<Order> Get(Expression<Func<Order, bool>> filter)
         {
             throw new NotImplementedException();
         }
 
-        public List<Order> GetAll(Expression<Func<Order, bool>> filter = null)
+        public Task<List<Order>> GetAll(Expression<Func<Order, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Order entity)
+        public Task<bool> SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateAsync(Order entity)
         {
             throw new NotImplementedException();
         }

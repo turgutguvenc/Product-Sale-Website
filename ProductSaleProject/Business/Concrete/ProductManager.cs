@@ -1,7 +1,11 @@
 ﻿using Business.Abstract;
+using Business.ResponseModels.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Constants.Messages;
 using Entities.DTOs;
+using Entities.ResponseModels.Abstract;
+using Entities.ResponseModels.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,44 +21,99 @@ namespace Business.Concrete
         {
             _productDal = productDal;
         }
-        public async Task AddProductAsync(Product product)
+        public async Task<IResult> AddProductAsync(Product product)
         {
-           _productDal.Add(product);
+            if (product == null)
+            {
+                return new ErrorResult(ErrorMessages.EntityIsNotValid);
+            }    
+           var result = await _productDal.AddAsync(product);
+            if(result)
+            {
+                return new SuccessResult(SuccessMessages.EntityAdded);
+            }
+                return new ErrorResult(ErrorMessages.NoEntityFound);
+
+  
         }
 
-        public async Task DeleteProductAsync(Product product)
+        public async Task<IResult> DeleteProductAsync(Product product)
         {
-            _productDal.Delete(product);
+            if (product == null)
+            {
+                return new ErrorResult(ErrorMessages.EntityIsNotValid);
+            }
+           var result = await  _productDal.DeleteAsync(product);
+            if(result)
+            {
+                return new SuccessResult(SuccessMessages.EntityDeleted);
+            }
+            return new ErrorResult(ErrorMessages.NoEntityFound);
         }
 
-        public async Task<List<Product>> GetAllProductsAsync()
+        public async Task<IResult> UpdateProductAsync(Product product)
         {
-           return _productDal.GetAll();
+            if (product == null)
+            {
+                return new ErrorResult(ErrorMessages.EntityIsNotValid);
+            }
+            var result = await _productDal.UpdateAsync(product);
+            if( result)
+            {
+                return new SuccessResult(SuccessMessages.EntityUpdated);
+            }
+            return new ErrorResult(ErrorMessages.NoEntityFound);
         }
 
-        public async Task<List<Product>> GetAllProductsByPriceRangeAsync(decimal minPrice, decimal maxPrice)
+
+        public async Task<IDataResult<List<Product>>> GetAllProductsAsync()
         {
-            return _productDal.GetAll(p=> p.UnitPrice> minPrice && p.UnitPrice < maxPrice);
+           var products = await _productDal.GetAll();
+            if(products.Count < 1)
+            {
+                return new ErrorDataResult<List<Product>> (products, ErrorMessages.NoEntityFound);
+            }
+            return new SuccessDataResult<List<Product>>(products,SuccessMessages.EntityAllListed);
         }
 
-        public async Task<List<Product>> GetProductByCategoryId(int categoryId)
+        public async Task<IDataResult<List<Product>>> GetAllProductsByPriceRangeAsync(decimal minPrice, decimal maxPrice)
         {
-            return _productDal.GetAll(p => p.CategoryId == categoryId);
+            var products = await _productDal.GetAll(p=> p.UnitPrice> minPrice && p.UnitPrice < maxPrice);
+            if (products.Count == 0)
+            {
+                return new ErrorDataResult<List<Product>>(products, ErrorMessages.NoEntityFound);
+            }
+            return new SuccessDataResult<List<Product>>(products, SuccessMessages.EntityAllListed);
         }
 
-        public async Task<Product> GetProductByIdAsync(int id)
+        public async Task<IDataResult<List<Product>>> GetProductByCategoryId(int categoryId)
         {
-            return _productDal.Get(p=> p.ProductId == id);
+            var products =  await _productDal.GetAll(p => p.CategoryId == categoryId);
+            if (products.Count == 0)
+            {
+                return new ErrorDataResult<List<Product>>(products, ErrorMessages.NoEntityFound);
+            }
+            return new SuccessDataResult<List<Product>>(products, SuccessMessages.CategoryById);
         }
 
-        public async Task UpdateProductAsync(Product product)
+        public async Task<IDataResult<Product>> GetProductByIdAsync(int id)
         {
-            _productDal.Update(product);
+            var product = await _productDal.Get(p=> p.ProductId == id);
+            if(product == null)
+            {
+                return new ErrorDataResult<Product>(product, ErrorMessages.NoEntityFound);
+            }
+            return new SuccessDataResult<Product>(product, SuccessMessages.EntityByEntityId);
         }
 
-        public async Task<List<ProductDetailDto>> GetProductDetails()
+        public async Task<IDataResult<List<ProductDetailDto>>> GetProductDetailsAsync()
         {
-            return _productDal.GetProductsWithDetails();
+           var products = await _productDal.GetProductsWithDetails();
+            if (products.Count == 0)
+            {
+                return new ErrorDataResult<List<ProductDetailDto>>(products, ErrorMessages.NoEntityFound);
+            }
+            return new SuccessDataResult<List<ProductDetailDto>>(products, SuccessMessages.EntityAllListed);
         }
     }
 }

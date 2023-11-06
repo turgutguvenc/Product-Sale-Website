@@ -10,6 +10,7 @@ namespace DataAccess.Abstract
 {
     public interface IProductDal:IEntityRepositoryDal<Product>
     {
-        List<ProductDetailDto> GetProductsWithDetails();
+        Task<List<ProductDetailDto>> GetProductsWithDetails();
+        Task<bool> CheckProductExistsAsync(Product product);    
     }
 }

@@ -63,3 +63,5 @@ C:\Users\Bruker\OneDrive\Desktop\RealProjects\Product-Sale-Website\ProductSalePr
 C:\Users\Bruker\OneDrive\Desktop\RealProjects\Product-Sale-Website\ProductSaleProject\ConsoleUI\obj\Debug\net6.0\ref\ConsoleUI.dll
 C:\Users\Bruker\OneDrive\Desktop\RealProjects\Product-Sale-Website\ProductSaleProject\ConsoleUI\bin\Debug\net6.0\Tests.dll
 C:\Users\Bruker\OneDrive\Desktop\RealProjects\Product-Sale-Website\ProductSaleProject\ConsoleUI\bin\Debug\net6.0\Tests.pdb
+C:\Users\Bruker\OneDrive\Desktop\RealProjects\Product-Sale-Website\ProductSaleProject\ConsoleUI\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\Bruker\OneDrive\Desktop\RealProjects\Product-Sale-Website\ProductSaleProject\ConsoleUI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
