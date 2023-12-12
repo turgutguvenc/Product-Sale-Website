@@ -1,17 +1,12 @@
 ﻿using Business.Abstract;
-using Business.Constants.Messages;
 using Business.ResponseModels.Concrete;
 using Business.Security.Hashing;
 using Business.Security.JWT;
 using Entities.Concrete;
+using Entities.Constants.Messages;
 using Entities.DTOs;
 using Entities.ResponseModels.Abstract;
 using Entities.ResponseModels.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {

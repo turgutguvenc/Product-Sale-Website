@@ -13,3 +13,4 @@ C:\Users\Bruker\OneDrive\Desktop\RealProjects\Product-Sale-Website\ProductSalePr
 C:\Users\Bruker\OneDrive\Desktop\RealProjects\Product-Sale-Website\ProductSaleProject\DataAccess\obj\Debug\net6.0\refint\DataAccess.dll
 C:\Users\Bruker\OneDrive\Desktop\RealProjects\Product-Sale-Website\ProductSaleProject\DataAccess\obj\Debug\net6.0\DataAccess.pdb
 C:\Users\Bruker\OneDrive\Desktop\RealProjects\Product-Sale-Website\ProductSaleProject\DataAccess\obj\Debug\net6.0\ref\DataAccess.dll
+C:\Users\Bruker\OneDrive\Desktop\RealProjects\Product-Sale-Website\ProductSaleProject\DataAccess\obj\Debug\net6.0\DataAccess.sourcelink.json
