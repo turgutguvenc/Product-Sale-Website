@@ -29,6 +29,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpGet("category/{id}")]
+        public async Task<ActionResult<DataResult<List<Product>>>> GetProductsByCategory(int id)
+        {
+            var result = await _productService.GetProductByCategoryId(id);
+            if(result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
 
         [HttpGet("{productId}")]
         public async Task<ActionResult<DataResult<Product>>> GetSingleProduct(int productId)
@@ -56,7 +66,7 @@ namespace WebAPI.Controllers
         {
             var result =  await _productService.UpdateProductAsync(product);
             if (result.Success) {
-                return Ok(result.Message);
+                return Ok(result);
              }
             return BadRequest(result.Message);
         }
@@ -65,7 +75,7 @@ namespace WebAPI.Controllers
         {
             var result = await _productService.DeleteProductAsync(product);
             if (result.Success) { 
-               return(Ok(result.Message));
+               return(Ok(result));
             }
             return BadRequest(result.Message);
         }

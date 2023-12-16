@@ -23,6 +23,7 @@ builder.Services.AddScoped<IProductService, ProductManager>();
 builder.Services.AddScoped<IUserService, UserManager>();
 builder.Services.AddScoped<IAuthService, AuthManager>();  
 builder.Services.AddScoped<ITokenHelper,JwtHelper>();
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
 
 // Add Data Access Services
 builder.Services.AddScoped<IProductDal, EfProductDal>();
@@ -69,12 +70,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.UseCors("MyAllowSpecificOrigins");
-
+app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseAuthentication();
-
 app.MapControllers();
 
 app.Run();

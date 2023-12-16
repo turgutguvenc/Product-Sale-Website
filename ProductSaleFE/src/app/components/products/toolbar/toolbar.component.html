@@ -1,15 +1,30 @@
-<mat-toolbar color="primary">
-  <button mat-button class="sidenav-toggle" (click)="toggleSidenav.emit()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Products</span>
-  <span class="example-spacer"></span>
-  <button mat-button [matMenuTriggerFor]="menu">
-    <mat-icon>person</mat-icon>
-    <mat-icon>add_shopping_cart</mat-icon>
-    <mat-icon>arrow_drop_down_circle</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="toggleTheme.emit()">Toogle Theme</button>
-  </mat-menu>
+<mat-toolbar color="primary" class="main-container">
+  <div class="left-container">
+    <button mat-button class="sidenav-toggle" (click)="toggleSidenav.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-icon> monetization_on</mat-icon>
+    <span>KANAPISHOP</span>
+    <mat-icon> monetization_on</mat-icon>
+  </div>
+  <div class="middle-container">
+    <span class="product">Products</span>
+    <div class="search-container">
+      <input matInput placeholder="Search" class="search-input" />
+    </div>
+  </div>
+  <div class="right-container">
+    <button
+      mat-button
+      [matMenuTriggerFor]="menu"
+      class="right-container-button"
+    >
+      <mat-icon>person</mat-icon>
+      <mat-icon>shopping_cart</mat-icon>
+      <mat-icon>arrow_drop_down_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="toggleTheme.emit()">Toogle Theme</button>
+    </mat-menu>
+  </div>
 </mat-toolbar>

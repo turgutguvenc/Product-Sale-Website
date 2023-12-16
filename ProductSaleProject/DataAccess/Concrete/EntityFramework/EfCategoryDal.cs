@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,34 +12,71 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCategoryDal : ICategoryDal
     {
-        public Task<bool> AddAsync(Category entity)
+        private readonly NorthwindDbContext _context;
+        public EfCategoryDal(NorthwindDbContext context)
         {
-            throw new NotImplementedException();
+                _context = context;
+        }
+        public async Task<bool> AddAsync(Category entity)
+        {
+            var result = await CheckCategoryExists(entity);
+            if(result)
+            {
+                await _context.Categories.AddAsync(entity);
+                await SaveChangesAsync();
+            }           
+            return result;
         }
 
-        public Task<bool> DeleteAsync(Category entity)
+        public async Task<bool> DeleteAsync(Category entity)
         {
-            throw new NotImplementedException();
+            var result = await CheckCategoryExists(entity);
+            if (result)
+            {
+               _context.Categories.Remove(entity);
+               await SaveChangesAsync();
+            }
+            return result;
         }
 
-        public Task<Category> Get(Expression<Func<Category, bool>> filter)
+        public async Task<Category> Get(Expression<Func<Category, bool>> filter)
         {
-            throw new NotImplementedException();
+            return await _context.Categories.FirstOrDefaultAsync(filter);
         }
 
-        public Task<List<Category>> GetAll(Expression<Func<Category, bool>> filter = null)
+        public async Task<List<Category>> GetAll(Expression<Func<Category, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            if(filter == null)
+            {
+                return await _context.Categories.ToListAsync();
+            }
+            else
+            {
+               return await _context.Categories.Where(filter).ToListAsync();
+            }
         }
 
-        public Task<bool> SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return (await _context.SaveChangesAsync()>=0);
         }
 
-        public Task<bool> UpdateAsync(Category entity)
+        public async Task<bool> UpdateAsync(Category entity)
         {
-            throw new NotImplementedException();
+            var result = await _context.Categories.FirstOrDefaultAsync(c => c.CategoryId == entity.CategoryId);
+            if (result != null)
+            {
+                result.CategoryName = entity.CategoryName;
+                result.Description = entity.Description;
+                await SaveChangesAsync();
+            }
+            return result != null;
+        }
+
+        public async Task<bool> CheckCategoryExists(Category category)
+        {
+            var result = await _context.Categories.FirstOrDefaultAsync(c => c.CategoryName == category.CategoryName);
+            return result == null;
         }
     }
 }

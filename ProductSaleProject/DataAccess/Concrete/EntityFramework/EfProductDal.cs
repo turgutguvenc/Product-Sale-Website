@@ -21,7 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
         public async Task<bool> AddAsync(Product entity)
         {
             var result = await CheckProductExistsAsync(entity);
-            if(result )
+            if(result)
             {
                 await _context.Products.AddAsync(entity);
                 await _context.SaveChangesAsync();
@@ -42,7 +42,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public async Task<Product> Get(Expression<Func<Product, bool>> filter)
         {
-            return _context.Products.FirstOrDefault(filter);
+            return await _context.Products.FirstOrDefaultAsync(filter);
         }
 
         public async Task<List<Product>> GetAll(Expression<Func<Product, bool>> filter = null)
@@ -92,7 +92,7 @@ namespace DataAccess.Concrete.EntityFramework
         public async Task<bool> CheckProductExistsAsync(Product product)
         {
             var result = await _context.Products.SingleOrDefaultAsync(p => p.ProductId == product.ProductId);
-            return result != null;
+            return result == null;
         }
 
         public async Task<bool> SaveChangesAsync()

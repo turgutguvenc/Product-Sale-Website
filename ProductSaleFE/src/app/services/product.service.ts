@@ -8,10 +8,15 @@ import { ProductResponse } from '../models/productResponse.model';
 })
 export class ProductService {
   baseUrl: string = 'https://localhost:7003/api';
-
   constructor(private httpClient: HttpClient) {}
 
   getProducts(): Observable<ProductResponse> {
     return this.httpClient.get<ProductResponse>(this.baseUrl + '/products');
+  }
+
+  getProductsByCategoryId(id: number): Observable<ProductResponse> {
+    return this.httpClient.get<ProductResponse>(
+      this.baseUrl + '/products/category/' + id
+    );
   }
 }

@@ -4,13 +4,12 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
-    path: 'products',
+    path: '',
     loadChildren: () =>
       import('./components/products/product.module').then(
         (m) => m.ProductModule
       ),
   },
-  { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' },
 ];
 
