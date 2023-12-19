@@ -31,3 +31,6 @@ a {
 .category-list-item {
   padding: 30px 15px;
 }
+.active-link {
+  color: #c2185b;
+}

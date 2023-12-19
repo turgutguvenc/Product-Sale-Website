@@ -11,7 +11,11 @@
       *ngFor="for; let category; of: categories"
     >
       <mat-list-item class="category-list-item">
-        <a matLine [routerLink]="['/', category.categoryId]">
+        <a
+          matLine
+          [routerLink]="['/', category.categoryId]"
+          routerLinkActive="active-link"
+        >
           {{ category.categoryName }}</a
         >
       </mat-list-item>
