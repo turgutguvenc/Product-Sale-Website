@@ -6,6 +6,19 @@
     [mode]="isScreenSmall ? 'over' : 'side'"
   >
     <mat-toolbar color="primary"> Categories </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item class="category-list-item">
+        <a
+          matLine
+          routerLink="/products"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          All Products</a
+        >
+      </mat-list-item>
+    </mat-nav-list>
+    <mat-divider style="background-color: #30e3ca"></mat-divider>
     <mat-nav-list
       class="category-list"
       *ngFor="for; let category; of: categories"
@@ -13,8 +26,9 @@
       <mat-list-item class="category-list-item">
         <a
           matLine
-          [routerLink]="['/', category.categoryId]"
+          [routerLink]="['/products/category', category.categoryId]"
           routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
           {{ category.categoryName }}</a
         >
@@ -25,6 +39,16 @@
   <div class="app-sidenav-content">
     <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
     <div class="wrapper">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-sm-6 col-md-4 col-lg-3 product-card-container"
+            *ngFor="let product of products"
+          >
+            <app-category-detail [product]="product"></app-category-detail>
+          </div>
+        </div>
+      </div>
       <router-outlet></router-outlet>
     </div>
   </div>

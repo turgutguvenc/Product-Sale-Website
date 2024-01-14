@@ -6,8 +6,16 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: ProductComponent,
-    children: [{ path: ':id', component: CategoryDetailComponent }],
+  },
+  {
+    path: 'products',
+    component: ProductComponent,
+  },
+  {
+    path: 'products/category/:id',
+    component: ProductComponent,
   },
   { path: '**', redirectTo: '' },
 ];

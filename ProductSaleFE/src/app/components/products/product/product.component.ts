@@ -1,5 +1,6 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/models/category.model';
 import { Product } from 'src/app/models/product.model';
 import { CategoryService } from 'src/app/services/category.service';
@@ -16,11 +17,13 @@ export class ProductComponent implements OnInit {
   isScreenSmall: boolean = false;
   products: Product[] = [];
   categories: Category[] = [];
+  activateRouteId: string | undefined;
 
   constructor(
     private breakPointObserver: BreakpointObserver,
     private productService: ProductService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +32,14 @@ export class ProductComponent implements OnInit {
       .subscribe((state: BreakpointState) => {
         this.isScreenSmall = state.matches;
       });
-    this.getAllProducts();
+    this.route.params.subscribe((res) => {
+      this.activateRouteId = res['id'];
+      if (this.activateRouteId) {
+        this.getAllProductById(Number(this.activateRouteId));
+      } else {
+        this.getAllProducts();
+      }
+    });
     this.getAllCategories();
   }
 
@@ -38,6 +48,16 @@ export class ProductComponent implements OnInit {
       if (response.success) {
         this.products = response.data;
         console.log(this.products);
+      } else {
+        console.log(response.message);
+      }
+    });
+  }
+
+  getAllProductById(id: number) {
+    this.productService.getProductsByCategoryId(id).subscribe((response) => {
+      if (response.success) {
+        this.products = response.data;
       } else {
         console.log(response.message);
       }

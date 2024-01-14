@@ -19,9 +19,15 @@
 .wrapper {
   margin: 100px 50px;
 }
+.product-card-container {
+  margin-top: 40px;
+}
 a {
   color: #30e3ca;
   text-decoration: none;
+}
+.matdivider {
+  color: #30e3ca;
 }
 .category-list {
   list-style: none;

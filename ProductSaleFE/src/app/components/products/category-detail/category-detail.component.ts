@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/models/category.model';
 import { Product } from 'src/app/models/product.model';
@@ -14,21 +14,12 @@ export class CategoryDetailComponent implements OnInit {
   category: Category | undefined;
   productByCategory: Product[] = [];
 
+  @Input() product: Product | undefined;
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
   ) {}
 
-  ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      const id = params['id'];
-      this.productService.getProductsByCategoryId(id).subscribe((response) => {
-        if (response.success) {
-          this.productByCategory = response.data;
-          console.log(this.productByCategory);
-        }
-      });
-      // You can now use the ID in your component logic
-    });
-  }
+  ngOnInit(): void {}
 }
