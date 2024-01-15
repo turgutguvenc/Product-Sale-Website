@@ -6,6 +6,8 @@ import { MaterialModule } from 'src/app/shared/material.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
 import { VatAddedPipe } from 'src/app/pipes/vat-added.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from 'src/app/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -13,8 +15,15 @@ import { VatAddedPipe } from 'src/app/pipes/vat-added.pipe';
     ToolbarComponent,
     CategoryDetailComponent,
     VatAddedPipe,
+    FilterPipe,
   ],
-  imports: [CommonModule, ProductRoutingModule, MaterialModule],
+  imports: [
+    CommonModule,
+    ProductRoutingModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   exports: [ProductComponent],
 })
 export class ProductModule {}

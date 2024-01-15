@@ -37,7 +37,10 @@
     </mat-nav-list>
   </mat-sidenav>
   <div class="app-sidenav-content">
-    <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+    <app-toolbar
+      (toggleSidenav)="sidenav.toggle()"
+      (searchItem)="receiveFilter($event)"
+    ></app-toolbar>
     <div class="wrapper">
       <div class="container">
         <div class="row">

@@ -9,8 +9,13 @@ import { MatDialog } from '@angular/material/dialog';
 export class ToolbarComponent implements OnInit {
   @Output() toggleSidenav = new EventEmitter();
   @Output() toggleTheme = new EventEmitter();
+  @Output() searchItem = new EventEmitter<string>();
+  filterText: string = '';
 
   constructor(private matDialog: MatDialog) {}
 
   ngOnInit(): void {}
+  sendSearchText() {
+    this.searchItem.emit(this.filterText);
+  }
 }

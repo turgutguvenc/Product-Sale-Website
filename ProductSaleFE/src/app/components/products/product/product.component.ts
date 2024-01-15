@@ -18,6 +18,7 @@ export class ProductComponent implements OnInit {
   products: Product[] = [];
   categories: Category[] = [];
   activateRouteId: string | undefined;
+  filterText: string = '';
 
   constructor(
     private breakPointObserver: BreakpointObserver,
@@ -71,5 +72,9 @@ export class ProductComponent implements OnInit {
         console.log(this.categories);
       }
     });
+  }
+  receiveFilter(filter: string) {
+    this.filterText = filter;
+    console.log(this.filterText);
   }
 }

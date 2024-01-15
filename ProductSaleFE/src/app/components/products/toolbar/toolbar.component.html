@@ -8,9 +8,23 @@
     <mat-icon> monetization_on</mat-icon>
   </div>
   <div class="middle-container">
-    <span class="product">Products</span>
+    <span class="product"
+      ><button
+        mat-stroked-button
+        color="accent"
+        class="serachButton"
+        (click)="sendSearchText()"
+      >
+        Search
+      </button></span
+    >
     <div class="search-container">
-      <input matInput placeholder="Search" class="search-input" />
+      <input
+        [(ngModel)]="filterText"
+        matInput
+        placeholder="Enter Search Text"
+        class="search-input"
+      />
     </div>
   </div>
   <div class="right-container">
