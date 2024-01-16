@@ -28,17 +28,13 @@
     </div>
   </div>
   <div class="right-container">
-    <button
-      mat-button
-      [matMenuTriggerFor]="menu"
-      class="right-container-button"
-    >
+    <button mat-button class="right-container-button">
       <mat-icon>person</mat-icon>
-      <mat-icon>shopping_cart</mat-icon>
-      <mat-icon>arrow_drop_down_circle</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="toggleTheme.emit()">Toogle Theme</button>
-    </mat-menu>
+    <button mat-button class="right-container-button">
+      <mat-icon [matBadge]="numberOfItems" matBadgeColor="warn" matBadgeSize="small"
+        >shopping_cart</mat-icon
+      >
+    </button>
   </div>
 </mat-toolbar>

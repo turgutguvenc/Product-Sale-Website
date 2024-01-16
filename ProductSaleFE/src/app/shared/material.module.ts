@@ -40,11 +40,14 @@ import { ObserversModule } from '@angular/cdk/observers';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PlatformModule } from '@angular/cdk/platform';
 import { PortalModule } from '@angular/cdk/portal';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
   exports: [
     CommonModule,
+    MatBadgeModule,
+    MatCardModule,
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,

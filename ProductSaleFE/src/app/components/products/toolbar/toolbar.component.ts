@@ -11,6 +11,7 @@ export class ToolbarComponent implements OnInit {
   @Output() toggleTheme = new EventEmitter();
   @Output() searchItem = new EventEmitter<string>();
   filterText: string = '';
+  numberOfItems: number = 2;
 
   constructor(private matDialog: MatDialog) {}
 
