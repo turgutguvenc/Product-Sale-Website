@@ -8,6 +8,7 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 import { VatAddedPipe } from 'src/app/pipes/vat-added.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
+import { CartDetailComponent } from './cart-detail/cart-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
     CategoryDetailComponent,
     VatAddedPipe,
     FilterPipe,
+    CartDetailComponent,
   ],
   imports: [
     CommonModule,

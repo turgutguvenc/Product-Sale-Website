@@ -31,8 +31,15 @@
     <button mat-button class="right-container-button">
       <mat-icon>person</mat-icon>
     </button>
-    <button mat-button class="right-container-button">
-      <mat-icon [matBadge]="numberOfItems" matBadgeColor="warn" matBadgeSize="small"
+    <button
+      mat-button
+      class="right-container-button"
+      routerLink="/products/cart-detail"
+    >
+      <mat-icon
+        [matBadge]="numberOfItems"
+        matBadgeColor="warn"
+        matBadgeSize="small"
         >shopping_cart</mat-icon
       >
     </button>

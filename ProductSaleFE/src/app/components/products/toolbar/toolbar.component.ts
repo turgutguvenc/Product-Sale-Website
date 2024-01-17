@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,12 +12,16 @@ export class ToolbarComponent implements OnInit {
   @Output() toggleTheme = new EventEmitter();
   @Output() searchItem = new EventEmitter<string>();
   filterText: string = '';
-  numberOfItems: number = 2;
+  numberOfItems: number | undefined;
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private matDialog: MatDialog, private cartService: CartService) {}
 
   ngOnInit(): void {}
+
   sendSearchText() {
     this.searchItem.emit(this.filterText);
+  }
+  getNumberOfCartElements() {
+    this.numberOfItems = this.cartService.listCartItems().length;
   }
 }
