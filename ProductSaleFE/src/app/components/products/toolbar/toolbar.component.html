@@ -37,7 +37,7 @@
       routerLink="/products/cart-detail"
     >
       <mat-icon
-        [matBadge]="numberOfItems"
+        [matBadge]="numberOfItems | async"
         matBadgeColor="warn"
         matBadgeSize="small"
         >shopping_cart</mat-icon

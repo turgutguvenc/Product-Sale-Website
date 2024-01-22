@@ -28,6 +28,8 @@ export class CategoryDetailComponent implements OnInit {
   ngOnInit(): void {}
   addCart(product: Product) {
     this.cartService.addToCart(product);
-    this.snackBar.open(product?.productName + ' is added to Cart');
+    this.snackBar.open(product?.productName + ' is added to Cart', 'Cart', {
+      duration: 2000,
+    });
   }
 }
