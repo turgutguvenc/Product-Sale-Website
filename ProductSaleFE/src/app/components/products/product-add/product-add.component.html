@@ -1,0 +1,50 @@
+<mat-card class="product-card">
+  <mat-card-header>
+    <mat-card-title> Add New Product</mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field *ngIf="productAddForm" [formGroup]="productAddForm">
+    <mat-card-content>
+      <mat-label>Product Name</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="productName"
+        placeholder="Product Name"
+      />
+      <mat-error></mat-error>
+    </mat-card-content>
+    <mat-card-content
+      ><mat-label>Product Price</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="unitPrice"
+        placeholder="Product Price" />
+      <mat-error></mat-error
+    ></mat-card-content>
+    <mat-card-content
+      ><mat-label>In Stock</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="unitInStock"
+        placeholder="In Stock" />
+      <mat-error></mat-error
+    ></mat-card-content>
+
+    <mat-card-content
+      ><mat-label>Category Id</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="categoryId"
+        placeholder="Category Id" />
+      <mat-error></mat-error
+    ></mat-card-content>
+  </mat-form-field>
+
+  <mat-card-actions>
+    <button mat-button (click)="addProduct()">Add Product</button>
+  </mat-card-actions>
+</mat-card>

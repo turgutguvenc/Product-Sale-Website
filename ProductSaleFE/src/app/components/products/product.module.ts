@@ -9,6 +9,7 @@ import { VatAddedPipe } from 'src/app/pipes/vat-added.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
+import { ProductAddComponent } from './product-add/product-add.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CartDetailComponent } from './cart-detail/cart-detail.component';
     VatAddedPipe,
     FilterPipe,
     CartDetailComponent,
+    ProductAddComponent,
   ],
   imports: [
     CommonModule,
