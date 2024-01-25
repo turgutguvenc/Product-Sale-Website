@@ -1,50 +1,106 @@
-<mat-card class="product-card">
-  <mat-card-header>
-    <mat-card-title> Add New Product</mat-card-title>
-  </mat-card-header>
+<mat-sidenav-container class="app-sidenav-container">
+  <mat-sidenav
+    #sidenav
+    class="app-sidenav mat-elevation-z10"
+    [opened]="!isScreenSmall"
+    [mode]="isScreenSmall ? 'over' : 'side'"
+  >
+    <mat-toolbar color="primary"> Categories </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item class="category-list-item">
+        <a
+          matLine
+          routerLink="/products"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          All Products</a
+        >
+      </mat-list-item>
+    </mat-nav-list>
+    <mat-divider style="background-color: #30e3ca"></mat-divider>
+    <mat-nav-list
+      class="category-list"
+      *ngFor="for; let category; of: categories"
+    >
+      <mat-list-item class="category-list-item">
+        <a
+          matLine
+          [routerLink]="['/products/category', category.categoryId]"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          {{ category.categoryName }}</a
+        >
+      </mat-list-item>
+      <mat-divider style="background-color: #00bcd4"></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+  <div class="app-sidenav-content">
+    <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+    <div class="wrapper">
+      <div class="container">
+        <div class="row">
+          <mat-card class="product-card">
+            <mat-card-header>
+              <mat-card-title> Add New Product</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <form *ngIf="productAddForm" [formGroup]="productAddForm">
+                <p>
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="text"
+                      formControlName="productName"
+                      placeholder="Product Name"
+                    />
+                  </mat-form-field>
+                </p>
+                <p>
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      formControlName="unitPrice"
+                      placeholder="Product Price"
+                    />
+                  </mat-form-field>
+                </p>
+                <p>
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      formControlName="unitInStock"
+                      placeholder="In Stock"
+                    />
+                  </mat-form-field>
+                </p>
+                <p>
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      formControlName="categoryId"
+                      placeholder="Category Id"
+                    />
+                  </mat-form-field>
+                </p>
+              </form>
+            </mat-card-content>
 
-  <mat-form-field *ngIf="productAddForm" [formGroup]="productAddForm">
-    <mat-card-content>
-      <mat-label>Product Name</mat-label>
-      <input
-        matInput
-        type="text"
-        formControlName="productName"
-        placeholder="Product Name"
-      />
-      <mat-error></mat-error>
-    </mat-card-content>
-    <mat-card-content
-      ><mat-label>Product Price</mat-label>
-      <input
-        matInput
-        type="number"
-        formControlName="unitPrice"
-        placeholder="Product Price" />
-      <mat-error></mat-error
-    ></mat-card-content>
-    <mat-card-content
-      ><mat-label>In Stock</mat-label>
-      <input
-        matInput
-        type="number"
-        formControlName="unitInStock"
-        placeholder="In Stock" />
-      <mat-error></mat-error
-    ></mat-card-content>
-
-    <mat-card-content
-      ><mat-label>Category Id</mat-label>
-      <input
-        matInput
-        type="number"
-        formControlName="categoryId"
-        placeholder="Category Id" />
-      <mat-error></mat-error
-    ></mat-card-content>
-  </mat-form-field>
-
-  <mat-card-actions>
-    <button mat-button (click)="addProduct()">Add Product</button>
-  </mat-card-actions>
-</mat-card>
+            <mat-card-actions>
+              <button mat-raised-button (click)="addProduct()" color="accent">
+                Add Product
+              </button>
+              <button mat-raised-button (click)="cancelProduct()" color="warn">
+                Cancel
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-sidenav-container>
