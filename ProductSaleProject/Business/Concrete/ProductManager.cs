@@ -106,6 +106,12 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(product, SuccessMessages.EntityByEntityId);
         }
 
+        public async Task<bool> GetProductByNameAsync(string productName)
+        {
+            var product = await _productDal.Get(p => p.ProductName.ToLower() == productName.ToLower());
+            return product != null;
+        }
+
         public async Task<IDataResult<List<ProductDetailDto>>> GetProductDetailsAsync()
         {
            var products = await _productDal.GetProductsWithDetails();

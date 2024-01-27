@@ -56,6 +56,7 @@
                       placeholder="Product Name"
                       minlength="2"
                     />
+
                     <mat-error>Field is required</mat-error>
                   </mat-form-field>
                 </p>
@@ -83,12 +84,17 @@
                 </p>
                 <p>
                   <mat-form-field>
-                    <input
-                      matInput
-                      type="number"
+                    <mat-select
                       formControlName="categoryId"
-                      placeholder="Category Id"
-                    />
+                      placeholder="Select Category"
+                    >
+                      <mat-option
+                        *ngFor="let category of categories"
+                        [value]="category.categoryId"
+                      >
+                        {{ category.categoryName }}
+                      </mat-option>
+                    </mat-select>
                     <mat-error>Field is required</mat-error>
                   </mat-form-field>
                 </p>

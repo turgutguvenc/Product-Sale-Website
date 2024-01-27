@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstract;
 using Entities.Concrete;
+using Entities.Constants.Messages;
 using Entities.DTOs;
 using Entities.ResponseModels.Concrete;
 using Microsoft.AspNetCore.Http;
@@ -53,11 +54,16 @@ namespace WebAPI.Controllers
         [HttpPost("addproduct")]
         public async Task<ActionResult<Result>> CreateProduct(AddProductDto productDto)
         {
+           var existProduct = await _productService.GetProductByNameAsync(productDto.ProductName);
+            if (existProduct)
+            {
+                return BadRequest(ErrorMessages.EntityAlreadyExists);
+            }
             var finalProduct = _mapper.Map<Product>(productDto);
            var result = await _productService.AddProductAsync(finalProduct);
             if (result.Success) {
                 var createdFinalProduct = _mapper.Map<ProductDto>(finalProduct);
-                return Ok(createdFinalProduct);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }

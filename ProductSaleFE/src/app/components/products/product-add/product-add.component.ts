@@ -51,17 +51,20 @@ export class ProductAddComponent implements OnInit {
       {},
       this.productAddForm?.value
     );
+    console.log(productCreate);
     this.productService.addProduct(productCreate).subscribe(
       (res) => {
         if (res) {
-          this.snackBar.open(res.message + ' is added', 'Products', {
-            duration: 2000,
+          console.log(res);
+          this.snackBar.open(res.message, 'Products', {
+            duration: 3000,
           });
+          this.router.navigate(['/products']);
         }
       },
       (err) => {
         this.snackBar.open(err.error, 'Error', {
-          duration: 2000,
+          duration: 3000,
         });
       }
     );
