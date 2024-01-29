@@ -2,7 +2,7 @@
 <div class="row">
   <mat-card class="product-card">
     <mat-card-header>
-      <mat-card-title> Register</mat-card-title>
+      <mat-card-title>Register New User</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form *ngIf="registerForm" [formGroup]="registerForm">
@@ -13,8 +13,9 @@
               type="email"
               formControlName="email"
               placeholder="Email"
+              pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
             />
-            <mat-error>Field is required</mat-error>
+            <mat-error>Email is not valid</mat-error>
           </mat-form-field>
         </p>
         <p>
@@ -24,6 +25,7 @@
               type="text"
               formControlName="firstName"
               placeholder="First Name"
+              minlength="2"
             />
             <mat-error>Field is required</mat-error>
           </mat-form-field>
@@ -35,6 +37,7 @@
               type="text"
               formControlName="lastName"
               placeholder="Last Name"
+              minlength="2"
             />
             <mat-error>Field is required</mat-error>
           </mat-form-field>
@@ -46,19 +49,13 @@
               type="password"
               formControlName="password"
               placeholder="Password"
+              minlength="6"
             />
-            <mat-error>Field is required</mat-error>
-          </mat-form-field>
-        </p>
-        <p>
-          <mat-form-field>
-            <input matInput type="password" placeholder="Repeat Password" />
-            <mat-error>Field is required</mat-error>
+            <mat-error>Fill with at least 6 characters</mat-error>
           </mat-form-field>
         </p>
       </form>
     </mat-card-content>
-
     <mat-card-actions>
       <button
         mat-raised-button

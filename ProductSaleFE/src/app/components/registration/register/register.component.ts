@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UserRegister } from 'src/app/models/userRegister.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -10,11 +12,13 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup | undefined;
+  repeatedPassword: string = 're';
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -22,7 +26,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.registerForm?.value);
+    const user: UserRegister = this.registerForm?.value;
+    if (user) {
+      this.userService.userRegister(user);
+      this.router.navigate(['login']);
+      this.snackBar.open('Successful', 'Register', {
+        duration: 3000,
+      });
+    }
   }
 
   cancelRegister() {
