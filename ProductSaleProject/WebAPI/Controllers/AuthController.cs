@@ -25,9 +25,9 @@ namespace WebAPI.Controllers
             var result = await _authService.CreateAccessToken(userToLogin.Data);
             if(result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result);
+            return BadRequest(result.Message);
         }
         [HttpPost("register")]
         public async Task<ActionResult> Register(UserRegisterDto userRegisterDto)
@@ -41,9 +41,9 @@ namespace WebAPI.Controllers
             var result = await _authService.CreateAccessToken(registerUserResult.Data);
             if(result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result);
+            return BadRequest(result.Message);
         }
     }
 }

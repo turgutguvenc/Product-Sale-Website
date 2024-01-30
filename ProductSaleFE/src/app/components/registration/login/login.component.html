@@ -1,1 +1,49 @@
-<p>login works!</p>
+<app-navigation></app-navigation>
+<div class="row">
+  <mat-card class="product-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form *ngIf="loginForm" [formGroup]="loginForm">
+        <p>
+          <mat-form-field>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              placeholder="Email"
+              pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+            />
+            <mat-error>Email is not valid</mat-error>
+          </mat-form-field>
+        </p>   
+        <p>
+          <mat-form-field>
+            <input
+              matInput
+              type="password"
+              formControlName="password"
+              placeholder="Password"
+              minlength="6"
+            />
+            <mat-error>Fill with at least 6 characters</mat-error>
+          </mat-form-field>
+        </p>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        (click)="login()"
+        color="accent"
+        [disabled]="!loginForm?.valid"
+      >
+        Login
+      </button>
+      <button mat-raised-button (click)="cancelLogin()" color="warn">
+        Cancel
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -12,7 +12,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup | undefined;
-  repeatedPassword: string = 're';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,10 +27,12 @@ export class RegisterComponent implements OnInit {
   register() {
     const user: UserRegister = this.registerForm?.value;
     if (user) {
-      this.userService.userRegister(user);
-      this.router.navigate(['login']);
-      this.snackBar.open('Successful', 'Register', {
-        duration: 3000,
+      this.userService.userRegister(user).subscribe((res) => {
+        console.log('Register Response' + res.data.token);
+        this.snackBar.open(res.message, 'Register', {
+          duration: 3000,
+        });
+        this.router.navigate(['login']);
       });
     }
   }
