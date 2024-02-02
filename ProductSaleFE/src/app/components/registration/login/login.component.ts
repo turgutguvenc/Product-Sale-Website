@@ -27,13 +27,23 @@ export class LoginComponent implements OnInit {
   login() {
     const user: UserLogin = this.loginForm?.value;
     if (user) {
-      this.userService.userLogin(user).subscribe((res) => {
-        console.log('Login Response' + res.data.token);
-        this.snackBar.open(res.message, 'Register', {
-          duration: 3000,
-        });
-        this.router.navigate(['login']);
-      });
+      this.userService.userLogin(user).subscribe(
+        (res) => {
+          console.log('Login Response' + res.data.token);
+          this.snackBar.open(res.message, 'Register', {
+            duration: 3000,
+          });
+          localStorage.setItem('token', res.data.token);
+          this.userService.setIsAuthenticated(true);
+          this.router.navigate(['login']);
+        },
+        (error) => {
+          console.log(error);
+          this.snackBar.open(error.error.message, 'Register', {
+            duration: 3000,
+          });
+        }
+      );
     }
   }
 
