@@ -4,6 +4,7 @@ using Entities.Concrete;
 using Entities.Constants.Messages;
 using Entities.DTOs;
 using Entities.ResponseModels.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -51,6 +52,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        [Authorize]
         [HttpPost("addproduct")]
         public async Task<ActionResult<Result>> CreateProduct(AddProductDto productDto)
         {

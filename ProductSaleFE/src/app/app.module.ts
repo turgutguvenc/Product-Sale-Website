@@ -5,12 +5,13 @@ import { AppComponent } from './app.component';
 import { ProductModule } from './components/products/product.module';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/registration/login/login.component';
 import { RegisterComponent } from './components/registration/register/register.component';
 import { MaterialModule } from './shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationComponent } from './components/navigation/navigation/navigation.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,10 @@ import { NavigationComponent } from './components/navigation/navigation/navigati
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [ProductModule],
+  providers: [
+    ProductModule,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

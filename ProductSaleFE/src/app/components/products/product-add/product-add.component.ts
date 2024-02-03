@@ -63,7 +63,18 @@ export class ProductAddComponent implements OnInit {
         }
       },
       (err) => {
-        this.snackBar.open(err.error, 'Error', {
+        console.log(err);
+        let message = '';
+        if (err.status === 401 || err.status === 403) {
+          message = 'You are unauthorized';
+        } else if (err.status === 400) {
+          message = 'Bad Request';
+        } else if (err.status === 404) {
+          message = 'Not Found';
+        } else {
+          message = err.error.message;
+        }
+        this.snackBar.open(message, 'Error', {
           duration: 3000,
         });
       }

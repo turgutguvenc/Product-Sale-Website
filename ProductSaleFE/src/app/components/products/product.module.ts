@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { ProductAddComponent } from './product-add/product-add.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,9 @@ import { ProductAddComponent } from './product-add/product-add.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   exports: [ProductComponent],
 })
