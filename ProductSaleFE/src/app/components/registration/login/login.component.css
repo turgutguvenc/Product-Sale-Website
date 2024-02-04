@@ -1,3 +1,38 @@
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: white;
+  padding: 10px;
+  z-index: 100;
+
+  border-bottom: 1px solid #00bcd4;
+}
+
+.left-container,
+.right-container {
+  display: flex;
+  align-items: center;
+}
+
+.left-container {
+  flex: 1;
+}
+
+.right-container {
+  display: flex;
+  flex: 1;
+  justify-content: right;
+  align-items: center;
+}
+
+.example-spacer {
+  flex: 1;
+}
+
 .product-card {
   max-width: 500px;
   cursor: pointer;

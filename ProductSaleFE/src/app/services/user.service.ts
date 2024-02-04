@@ -35,6 +35,10 @@ export class UserService {
     this.isAuthenticated.next(value);
   }
 
+  getIsAuthenticated(): boolean {
+    return this.isAuthenticated.value;
+  }
+
   userLogout() {
     this.isAuthenticated.next(false);
     localStorage.removeItem('token');

@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -14,11 +15,17 @@ export class ToolbarComponent implements OnInit {
   @Output() searchItem = new EventEmitter<string>();
   filterText: string = '';
   numberOfItems: Observable<number> | undefined;
+  isUserAthenticated!: Observable<boolean>;
 
-  constructor(private matDialog: MatDialog, private cartService: CartService) {}
+  constructor(
+    private matDialog: MatDialog,
+    private cartService: CartService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.getTotalitems();
+    this.isUserAthenticated = this.userService.isAuthenticated$;
   }
 
   sendSearchText() {
@@ -26,5 +33,8 @@ export class ToolbarComponent implements OnInit {
   }
   getTotalitems() {
     this.numberOfItems = this.cartService.totalItems$;
+  }
+  logout() {
+    this.userService.userLogout();
   }
 }

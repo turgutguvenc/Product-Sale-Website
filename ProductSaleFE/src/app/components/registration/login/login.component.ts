@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { UserLogin } from 'src/app/models/userLogin.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,6 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup | undefined;
+  isUserAthenticated!: Observable<boolean>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.createLoginForm();
+    this.isUserAthenticated = this.userService.isAuthenticated$;
   }
 
   login() {
@@ -35,7 +38,7 @@ export class LoginComponent implements OnInit {
           });
           localStorage.setItem('token', res.data.token);
           this.userService.setIsAuthenticated(true);
-          this.router.navigate(['login']);
+          this.router.navigate(['/products/cart-detail']);
         },
         (error) => {
           console.log(error);
@@ -56,5 +59,8 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
+  }
+  logout() {
+    this.userService.userLogout();
   }
 }

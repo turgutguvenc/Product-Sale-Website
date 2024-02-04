@@ -5,7 +5,7 @@
     <mat-icon> monetization_on</mat-icon>
   </div>
   <div class="right-container">
-    <button mat-button class="right-container-button">
+    <button mat-button class="right-container-button" routerLink="/login">
       <mat-icon *ngIf="isUserAthenticated | async; else loginIcon"
         >logout</mat-icon
       >

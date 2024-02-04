@@ -1,4 +1,25 @@
-<app-navigation></app-navigation>
+<mat-toolbar color="secondary" class="main-container">
+  <div class="left-container">
+    <mat-icon> monetization_on</mat-icon>
+    <span>KANAPISHOP</span>
+    <mat-icon> monetization_on</mat-icon>
+  </div>
+  <div class="right-container">
+    <button mat-button class="right-container-button" routerLink="/register">
+      <mat-icon *ngIf="isUserAthenticated | async; else loginIcon"
+        >logout</mat-icon
+      >
+      <span *ngIf="isUserAthenticated | async" (click)="logout()">Logout</span>
+      <ng-template #loginIcon>
+        <mat-icon>login</mat-icon>
+        <span>Register</span>
+      </ng-template>
+    </button>
+    <button mat-button class="right-container-button">
+      <mat-icon>person</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
 <div class="row">
   <mat-card class="product-card">
     <mat-card-header>
@@ -17,7 +38,7 @@
             />
             <mat-error>Email is not valid</mat-error>
           </mat-form-field>
-        </p>   
+        </p>
         <p>
           <mat-form-field>
             <input
