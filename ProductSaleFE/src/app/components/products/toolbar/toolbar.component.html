@@ -28,16 +28,6 @@
     </div>
   </div>
   <div class="right-container">
-    <button mat-button class="right-container-button" routerLink="/login">
-      <mat-icon *ngIf="isUserAthenticated | async; else loginIcon"
-        >logout</mat-icon
-      >
-      <span *ngIf="isUserAthenticated | async" (click)="logout()">Logout</span>
-      <ng-template #loginIcon>
-        <mat-icon>login</mat-icon>
-        <span>Login</span>
-      </ng-template>
-    </button>
     <button
       mat-button
       class="right-container-button"
@@ -49,6 +39,16 @@
         matBadgeSize="small"
         >shopping_cart</mat-icon
       >
+    </button>
+    <button mat-button class="right-container-button" routerLink="/login">
+      <mat-icon *ngIf="isUserAthenticated | async; else loginIcon"
+        >logout</mat-icon
+      >
+      <span *ngIf="isUserAthenticated | async" (click)="logout()">Logout</span>
+      <ng-template #loginIcon>
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </ng-template>
     </button>
   </div>
 </mat-toolbar>

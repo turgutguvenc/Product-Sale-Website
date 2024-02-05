@@ -4,7 +4,7 @@
   </mat-card-header>
   <img
     mat-card-image
-    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+    [src]="product.image ? product.image : 'https://picsum.photos/200/300'"
     alt="Photo of a Shiba Inu"
   />
   <mat-card-content>
@@ -18,7 +18,9 @@
     </span>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button (click)="addCart(product)"><mat-icon>add_shopping_cart</mat-icon></button>
+    <button mat-button (click)="addCart(product)">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
     <button mat-button><mat-icon>favorite</mat-icon></button>
   </mat-card-actions>
 </mat-card>
